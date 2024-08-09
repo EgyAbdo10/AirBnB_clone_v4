@@ -75,7 +75,22 @@ button:hover {
 }
 
 .amenities .popover ul{
+    list-style-type: none; /* Remove default list styling */
     margin: 0px;
+    padding: 0px;
+}
+
+.amenities .popover ul li {
+    position: flex;
+    align-items: center;
+}
+
+.amenities .popover ul li span {
+    margin-right: 10px;
+}
+
+.amenities .popover ul li input {
+    padding: 0px;
 }
 
 .locations .popover {

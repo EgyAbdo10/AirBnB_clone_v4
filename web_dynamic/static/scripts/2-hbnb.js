@@ -1,3 +1,18 @@
+$(function () {
+  $.ajax({
+    url: 'http://localhost:5001/api/v1/status/',
+    type: 'GET',
+    success: (data) => {
+      if (data.status == 'OK') {
+        $('DIV#api_status').addClass("available");
+      }
+      else {
+        $('DIV#api_status').removeClass("available");
+      }
+    }
+  });
+});
+
 function display_amenities (amenities_dict) {
   const amenities = Object.values(amenities_dict).join(', ');
   if (amenities) { // check if text is empty or not

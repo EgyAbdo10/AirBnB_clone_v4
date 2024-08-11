@@ -65,14 +65,25 @@ function show_places (amenity_ids) {
     success: (places) => {
       $('section.places').html('');
       $.each(places, (idx, place) => {
-      // {% if place.max_guest != 1 %}s{% endif %}
-      // guset and guests
-      // {% if place.number_rooms != 1 %}s{% endif %}
-      // bathroom and bedrooms
-      // {% if place.number_bathrooms != 1 %}s{% endif %}
-      // bedroom and bedrooms
-      // insert into users (email, password , first_name , last_name, id, created_at ,updated_at) values ("12@gmail", "33", "ibrahim", "hossam", "b616943f-9f22-419d-8ea1-96859cd23fab" , '2024-08-04 22:59:25' , '2024-08-01 22:59:24');
-        console.log(`${place.name}`);
+        let guest_s = '';
+        let room_s = '';
+        let bathroom_s = '';
+        // {% if place.max_guest != 1 %}s{% endif %}
+        // guset and guests
+        // {% if place.number_rooms != 1 %}s{% endif %}
+        // bathroom and bedrooms
+        // {% if place.number_bathrooms != 1 %}s{% endif %}
+        // bedroom and bedrooms
+        // insert into users (email, password , first_name , last_name, id, created_at ,updated_at) values ("12@gmail", "33", "ibrahim", "hossam", "b616943f-9f22-419d-8ea1-96859cd23fab" , '2024-08-04 22:59:25' , '2024-08-01 22:59:24');
+        if (place.max_guest != 1) {
+          guest_s = 's';
+        }
+        if (place.number_rooms != 1) {
+          room_s = 's';
+        }
+        if (place.number_bathrooms != 1) {
+          bathroom_s = 's';
+        }
         $.ajax({
           url: `http://localhost:5001/api/v1/users/${place.user_id}`,
           type: 'GET',
@@ -84,9 +95,9 @@ function show_places (amenity_ids) {
 	    <div class="price_by_night">${place.price_by_night}</div>
 	  </div>
       <div class="information">
-	    <div class="max_guest">${place.max_guest} Guests</div> 
-            <div class="number_rooms">${place.number_rooms} Bedrooms</div>
-            <div class="number_bathrooms">${place.number_bathrooms} Bathrooms</div>
+	    <div class="max_guest">${place.max_guest} Guest${guest_s}</div> 
+            <div class="number_rooms">${place.number_rooms} Bedroom${room_s}</div>
+            <div class="number_bathrooms">${place.number_bathrooms} Bathroom${bathroom_s}</div>
 	  </div>
     <div class="user">
             <b>Owner:</b> ${user.first_name} ${user.last_name}

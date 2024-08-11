@@ -20,7 +20,6 @@ $(function () {
           url: `http://localhost:5001/api/v1/users/${place.user_id}`,
           type: 'GET',
           success: (user) =>
-
             $('section.places').append(
         `<article>
       <div class="title_box">
